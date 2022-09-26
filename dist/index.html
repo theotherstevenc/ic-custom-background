@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>SFMC BlockSDK</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.19.0/styles/salesforce-lightning-design-system.min.css" type="text/css" rel="stylesheet">
+  <link href="" id="external" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/blocksdk@1.3.0/blocksdk.min.js" defer></script>
+  <script src="./index.js" defer></script>
+  <style>
+    .ic-bg-dimension {
+      max-width: 100px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="blockSDK">
+
+    <div class="slds-form-element">
+      <label class="slds-form-element__label" for="bgUrl">Image URL</label>
+      <div class="slds-form-element__control">
+        <input type="url" id="bgUrl" class="slds-input" placeholder="" />
+      </div>
+    </div>
+
+    <div class="slds-form-element ic-bg-dimension">
+      <label class="slds-form-element__label" for="bgWidth">Image Width</label>
+      <div class="slds-form-element__control">
+        <input type="number" id="bgWidth" class="slds-input" placeholder="" />
+      </div>
+    </div>
+
+    <div class="slds-form-element ic-bg-dimension">
+      <label class="slds-form-element__label" for="bgHeight">Image Height</label>
+      <div class="slds-form-element__control">
+        <input type="number" id="bgHeight" class="slds-input" placeholder="" />
+      </div>
+    </div>
+
+    <div class="slds-form-element">
+      <label class="slds-form-element__label" for="bgText">Text Overlay</label>
+      <div class="slds-form-element__control">
+        <input type="text" id="bgText" class="slds-input" placeholder="" />
+      </div>
+    </div>
+
+    <div class="slds-form-element">
+      <label class="slds-form-element__label" for="bgTextColor">Text Color</label>
+      <div class="slds-form-element__control">
+        <input type="color" id="bgTextColor" class="slds-input" placeholder="" />
+      </div>
+    </div>
+
+    <div class="slds-form-element">
+      <label class="slds-form-element__label" for="bgTextBgColor">Text Background Color</label>
+      <div class="slds-form-element__control">
+        <input type="color" id="bgTextBgColor" class="slds-input" placeholder="" />
+      </div>
+    </div>
+
+
+    <div class="slds-form-element">
+			<legend class="slds-form-element__legend slds-form-element__label">Google Fonts</legend>
+			<div class="slds-form-element__control sfmc-sdk-custom__inputs">
+
+				
+			</div>
+		</div>
+
+  </div>
+
+</body>
+</html>
