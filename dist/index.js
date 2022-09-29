@@ -1,9 +1,3 @@
-const sdk = new window.sfdc.BlockSDK()
-let var_uniqVal
-let googleFontFamily = ''
-let googleFontsCSS = ''
-let googleFontStack = ''
-
 function _debounce(func, wait, immediate) {
 	let timeout
 	return function() {
@@ -19,11 +13,25 @@ function _debounce(func, wait, immediate) {
 	};
 }
 
-const endpoint = "https://googly-fonts-api.herokuapp.com/?limit=45";
+function _theBlock(){
 
-fetch(endpoint)
-  .then(res => res.json())
-  .then(mockApiData => {
+  const sdk = new window.sfdc.BlockSDK()
+  let limit = document.getElementById('quiet').value
+
+  const endpoint = `https://googly-fonts-api.herokuapp.com/?limit=${limit}`;
+
+  async function _getApiData() {
+    try {
+      let res = await fetch(endpoint)
+      return await res.json()
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  async function _render() {
+
+    let mockApiData = await _getApiData()
 
     document.getElementById('external').setAttribute(
       'href', `https://fonts.googleapis.com/css?family=${mockApiData.map(el => el.replace(/ /g, '+')).join('|')}`
@@ -64,6 +72,7 @@ fetch(endpoint)
       document.getElementById('bgWidth').value = bgWidth
       document.getElementById('bgHeight').value = bgHeight
       document.getElementById(var_uniqVal).checked = true
+      document.getElementById('quiet').value = fontObjs
     }
 
     function _display() {
@@ -74,6 +83,7 @@ fetch(endpoint)
       bgWidth = document.getElementById('bgWidth').value
       bgHeight = document.getElementById('bgHeight').value
       var_uniqVal = document.querySelector('input[name="ic-custom"]:checked').value
+      fontObjs = document.getElementById('quiet').value
 
       if(document.querySelector('input[name="ic-custom"]:checked')) { 
         googleFontFamily = document.querySelector('input[name="ic-custom"]:checked').getAttribute('data-value')
@@ -110,6 +120,7 @@ fetch(endpoint)
         bgWidth,
         bgHeight,
         var_uniqVal,
+        fontObjs,
       });
     }
 
@@ -121,12 +132,20 @@ fetch(endpoint)
       bgWidth = data.bgWidth || '400'
       bgHeight = data.bgHeight || '300'
       var_uniqVal = data.var_uniqVal || 'default'
+      fontObjs = data.fontObjs || 3
       _settings()
       _display()
     });
 
     document.getElementById('blockSDK').addEventListener('input', () => {
       _debounce(_display, 500)()
+      _debounce(_theBlock, 500)()
     });
 
-})
+  }
+
+  _render()
+
+}
+
+_theBlock()
