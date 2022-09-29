@@ -1,9 +1,3 @@
-const sdk = new window.sfdc.BlockSDK()
-let var_uniqVal
-let googleFontFamily = ''
-let googleFontsCSS = ''
-let googleFontStack = ''
-
 function _debounce(func, wait, immediate) {
 	let timeout
 	return function() {
@@ -19,11 +13,25 @@ function _debounce(func, wait, immediate) {
 	};
 }
 
-const endpoint = "https://googly-fonts-api.herokuapp.com/?limit=45";
+function _theBlock(){
 
-fetch(endpoint)
-  .then(res => res.json())
-  .then(mockApiData => {
+  const sdk = new window.sfdc.BlockSDK()
+  let limit = 50
+
+  const endpoint = `https://googly-fonts-api.herokuapp.com/?limit=${limit}`;
+
+  async function _getApiData() {
+    try {
+      let res = await fetch(endpoint)
+      return await res.json()
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  async function _render() {
+
+    let mockApiData = await _getApiData()
 
     document.getElementById('external').setAttribute(
       'href', `https://fonts.googleapis.com/css?family=${mockApiData.map(el => el.replace(/ /g, '+')).join('|')}`
@@ -32,7 +40,7 @@ fetch(endpoint)
     function ui(mockApiData){
       let markup = ``
       mockApiData.forEach(element => {
-        markup += `
+       markup += `
           <span class="slds-radio">
             <input type="radio" value="${element.replace(/ /g, '+')}" id="${element.replace(/ /g, '+')}" name="ic-custom" data-value="${element}" />
             <label class="slds-radio__label" for="${element.replace(/ /g, '+')}" style="font-family: ${element}; font-size: 2em;">
@@ -44,7 +52,7 @@ fetch(endpoint)
       });
       markup += `
         <span class="slds-radio">
-          <input type="radio" value="default" id="default" name="ic-custom" />
+          <input type="radio" value="default" id="default" data-value="default" name="ic-custom" />
           <label class="slds-radio__label" for="default" style="font-size: 2em;">
             <span class="slds-radio_faux"></span>
             <span class="slds-form-element__label">Default</span>
@@ -127,6 +135,13 @@ fetch(endpoint)
 
     document.getElementById('blockSDK').addEventListener('input', () => {
       _debounce(_display, 500)()
+      // _debounce(_theBlock, 500)()
     });
 
-})
+  }
+
+  _render()
+
+}
+
+_theBlock()
