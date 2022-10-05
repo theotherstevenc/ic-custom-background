@@ -1,3 +1,11 @@
+let fontListView = document.querySelector('.slds_sdk-ic-background-rw-2')
+// let maxHeightVal = fontListView.offsetHeight
+// let maxHeightUnit = 'px'
+// let maxHeight = `${maxHeightVal}${maxHeightUnit}` 
+// fontListView.style.maxHeight = `${maxHeightVal}${maxHeightUnit}`
+// console.log(`${maxHeightVal}${maxHeightUnit}`); 
+fontListView.style.overflow = 'scroll'; 
+
 const sdk = new window.sfdc.BlockSDK()
 let apiLimit
 let var_uniqVal
@@ -41,6 +49,10 @@ function _display() {
 
   if(document.querySelector('input[name="ic-custom"]:checked')) { 
     googleFontFamily = document.querySelector('input[name="ic-custom"]:checked').getAttribute('data-value')
+
+    document.querySelector('.selectedFont').innerHTML = googleFontFamily
+    document.querySelector('.selectedFont').style.fontFamily = googleFontFamily.replace(/ /g, '+')
+
     if(googleFontFamily == 'default') {
       googleFontStack = ''
       googleFontsCSS = ''
