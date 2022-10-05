@@ -1,9 +1,4 @@
 let fontListView = document.querySelector('.slds_sdk-ic-background-rw-2')
-// let maxHeightVal = fontListView.offsetHeight
-// let maxHeightUnit = 'px'
-// let maxHeight = `${maxHeightVal}${maxHeightUnit}` 
-// fontListView.style.maxHeight = `${maxHeightVal}${maxHeightUnit}`
-// console.log(`${maxHeightVal}${maxHeightUnit}`); 
 fontListView.style.overflow = 'scroll'; 
 
 const sdk = new window.sfdc.BlockSDK()
@@ -138,12 +133,12 @@ function _createElements(results) {
 
 sdk.getData((data) => {
   apiLimit = data.apiLimit || 2
-  bgUrl = data.bgUrl || 'https://placekitten.com/g/400/300'
+  bgUrl = data.bgUrl || 'https://placekitten.com/g/800/800'
   bgText = data.bgText || 'think globally'
   bgTextColor = data.bgTextColor || '#000000'
   bgTextBgColor = data.bgTextBgColor || '#ffffff'
-  bgWidth = data.bgWidth || '400'
-  bgHeight = data.bgHeight || '300'
+  bgWidth = data.bgWidth || '600'
+  bgHeight = data.bgHeight || '600'
   var_uniqVal = data.var_uniqVal || 'default'
   fetch(`https://googly-fonts-api.herokuapp.com/?limit=${apiLimit}`)
   .then((response) => response.json())
