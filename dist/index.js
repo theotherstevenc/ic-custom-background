@@ -106,7 +106,7 @@ function _ui(apiData){
   });
   markup += `
     <span class="slds-radio">
-      <input type="radio" value="default" id="default" data-value="default" name="ic-custom" />
+      <input type="radio" value="default" id="default" data-value="default" name="ic-custom" ${var_uniqVal === 'default'  ? 'checked' : ''}/>
       <label class="slds-radio__label" for="default" style="">
         <span class="slds-radio_faux"></span>
         <span class="slds-form-element__label">Default</span>
