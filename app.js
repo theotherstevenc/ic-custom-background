@@ -8,9 +8,9 @@ const app = express()
 
 app.use(cors())
 
-// app.use('/', express.static('dist'))
+app.use('/', express.static('dist'))
 
-app.get('/', (req,res)=>{
+app.get('/api', (req,res)=>{
 
   const limit = req.query.limit || 5
   const sortby = req.query.sort || 'popularity'
