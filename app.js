@@ -8,9 +8,9 @@ const app = express()
 
 app.use(cors())
 
-app.use('/', express.static('dist'))
+// app.use('/', express.static('dist'))
 
-app.get('/font-api', (req,res)=>{
+app.get('/', (req,res)=>{
 
   const limit = req.query.limit || 5
   const sortby = req.query.sort || 'popularity'
@@ -25,7 +25,6 @@ app.get('/font-api', (req,res)=>{
     });
   
 })
-
 
 app.listen(process.env.PORT || 3000, () => {
   console.log(`localhost//:3000`)
