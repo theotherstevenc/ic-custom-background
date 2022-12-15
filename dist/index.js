@@ -65,7 +65,7 @@ function _display() {
 
   if(apiLimit != currentVal) {
 
-    fetch(`/font-api/?limit=${apiLimit}`)
+    fetch(`api/?limit=${apiLimit}`)
     .then((response) => response.json())
     .then((results) => {
       _createElements(results) 
@@ -140,7 +140,7 @@ sdk.getData((data) => {
   bgWidth = data.bgWidth || '600'
   bgHeight = data.bgHeight || '600'
   var_uniqVal = data.var_uniqVal || 'default'
-  fetch(`/font-api/?limit=${apiLimit}`)
+  fetch(`api/?limit=${apiLimit}`)
   .then((response) => response.json())
   .then((results) => {
     _createElements(results)
